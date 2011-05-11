@@ -52,6 +52,39 @@ namespace libravatarsharp
 			return FromHashedIdentity( hashFunction(identity), options );
 		}
 		
+		/// <summary>
+		/// Converts an OpenID to a libravatar URI, using default options
+		/// </summary>
+		/// <param name="openid">
+		/// The OpenID associated with the avatar you want to retrieve
+		/// </param>
+		/// <returns>
+		/// A URI which points to the user's avatar.
+		/// </returns>
+		public static Uri FromOpenID( string openid )
+		{
+			return FromOpenID( openid, new AvatarOptions {} );
+		}
+
+		/// <summary>
+		/// Converts an OpenID to a libravatar URI
+		/// </summary>
+		/// <param name="openid">
+		/// The OpenID associated with the avatar you want to retrieve
+		/// </param>
+		/// <param name="options">
+		/// An AvatarOptions object, which provides various ways to customize the behavior
+		/// </param>
+		/// <returns>
+		/// A URI which points to the user's avatar.
+		/// </returns>
+		public static Uri FromOpenID( string openid, AvatarOptions options )
+		{
+			var identity = CanonicalizeOpenID(openid);
+			var hashFunction = (Func<string,string>)SHA256Hash;		// MD5 is not supported for OpenID.
+			return FromHashedIdentity( hashFunction(identity), options );
+		}
+		
 		static Uri FromHashedIdentity( string hash, AvatarOptions options )
 		{
 			var args = new Dictionary<string,string>();
@@ -121,7 +154,7 @@ namespace libravatarsharp
 		/// <summary>
 		/// Use the SHA256 hash algorithm, rather than MD5. SHA256 is significantly stronger,
 		/// but is not supported by Gravatar, so libravatar's fallback to Gravatar for missing
-		/// images will not work.
+		/// images will not work. Note that using AvatarUri.FromOpenID implicitly uses SHA256.
 		/// </summary>
 		public bool UseSHA256;
 

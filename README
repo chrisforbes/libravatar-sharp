@@ -1,8 +1,13 @@
 SYNOPSIS
 	using libravatarsharp;
+
 	var uri = AvatarUri.FromEmail( "someone@example.com" );
 	var uri = AvatarUri.FromEmail( "someone@example.com", 
-		new AvatarOptions { ... 
+		new AvatarOptions { ...
+ 
+	var uri = AvatarUri.FromOpenID( "http://example.com/id/john" );
+	var uri = AvatarUti.FromOpenID( "http://example.com/id/john",
+		new AvatarOptions { ...
 
 DESCRIPTION
 	Libravatar-sharp is a very simple library for producing 
@@ -14,8 +19,10 @@ OPTIONS
 		which is useful if including URIs in a page served via HTTPS.
 		The default value is false.
 	  * UseSHA256: Use the stronger SHA256 algorithm to hash the
-		email address. This is harder to reverse, but breaks
-		the fallback to Gravatar for missing images.
+		user's identity. This is harder to reverse, but breaks
+		the fallback to Gravatar for missing images. When using
+		OpenID identities, this flag is ignored, and SHA256 is used
+		at all times.
 		The default value is false.
 	  * DefaultImage: A URI to an image to use if none is found, or one
 		of the values in AvatarDefaultImages. Not all servers support
@@ -36,7 +43,6 @@ OPTIONS
 BUGS
 	The following would be nice, but are not yet supported:
 
-	  * OpenID lookups
 	  * Federation via DNS SRV requests
 
 AUTHOR
