@@ -10,6 +10,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Linq;
 using System.Text;
@@ -48,14 +49,28 @@ namespace libravatarsharp
 		{
 			var baseUrl = options.PreferHttps ? SecureBaseUrl : BaseUrl;
 			var hash = options.UseSHA256 ? (Func<string,string>)SHA256Hash : MD5Hash;
-
-			var defaultImage = options.DefaultImage != null ? ("?d=" + options.DefaultImage) : "";
-
-			return new Uri(baseUrl + hash(email.ToLowerInvariant()) + defaultImage);
+			
+			var args = new Dictionary<string,string>();
+			if (options.DefaultImage != null)
+				args["d"] = options.DefaultImage;
+			
+			var url = baseUrl + hash(email.ToLowerInvariant()) + UriQueryFromArgs(args);
+			return new Uri(url);
 		}
 	
 		static readonly string BaseUrl = "http://cdn.libravatar.org/avatar/";
 		static readonly string SecureBaseUrl = "https://seccdn.libravatar.org/avatar/";
+		
+		static string UriQueryFromArgs( Dictionary<string,string> args )
+		{
+			if (args.Count == 0)
+				return "";
+			
+			return "?" + string.Join( "&", args
+				.Select( kv => string.Format( "{0}={1}", kv.Key, 
+					Uri.EscapeDataString(kv.Value) ) )
+				.ToArray() );
+		}
 		
 		static string MD5Hash( string s )
 		{
