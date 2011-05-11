@@ -47,6 +47,7 @@ namespace libravatarsharp
 		/// </returns>
 		public static Uri FromEmail( string email, AvatarOptions options )
 		{
+			var identity = CanonicalizeEmail(email);
 			var baseUri = options.PreferHttps ? options.SecureBaseUri : options.BaseUri;
 			var hash = options.UseSHA256 ? (Func<string,string>)SHA256Hash : MD5Hash;
 			
@@ -56,7 +57,7 @@ namespace libravatarsharp
 			if (options.Size != null)
 				args["s"] = options.Size.ToString();
 			
-			var uri = baseUri + hash(email.ToLowerInvariant()) + UriQueryFromArgs(args);
+			var uri = baseUri + hash(identity) + UriQueryFromArgs(args);
 			return new Uri(uri);
 		}
 		
@@ -91,12 +92,17 @@ namespace libravatarsharp
 			    .SelectMany(a => a.ToString("x2")).ToArray());
 		}
 		
-		static Uri CanonicalizeOpenID( Uri openid )
+		static string CanonicalizeEmail( string email )
+		{
+			return email.ToLowerInvariant();
+		}
+		
+		static string CanonicalizeOpenID( string openid )
 		{
 			var ub = new UriBuilder(openid);
 			ub.Scheme = ub.Scheme.ToLowerInvariant();
 			ub.Host = ub.Host.ToLowerInvariant();
-			return ub.Uri;
+			return ub.ToString();
 		}
 	}
 	
