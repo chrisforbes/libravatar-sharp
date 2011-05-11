@@ -6,7 +6,7 @@ SYNOPSIS
 		new AvatarOptions { ...
  
 	var uri = AvatarUri.FromOpenID( "http://example.com/id/john" );
-	var uri = AvatarUti.FromOpenID( "http://example.com/id/john",
+	var uri = AvatarUri.FromOpenID( "http://example.com/id/john",
 		new AvatarOptions { ...
 
 DESCRIPTION
