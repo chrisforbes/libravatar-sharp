@@ -53,7 +53,7 @@ namespace libravatarsharp
 		}
 	
 		static readonly string BaseUrl = "http://cdn.libravatar.org/avatar/";
-		static readonly string SecureBaseUrl = "https://cdn.libravatar.org/avatar/";
+		static readonly string SecureBaseUrl = "https://seccdn.libravatar.org/avatar/";
 		
 		static string MD5Hash( string s )
 		{
