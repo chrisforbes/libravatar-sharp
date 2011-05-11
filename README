@@ -1,18 +1,28 @@
 SYNOPSIS
 	using libravatarsharp;
 	var uri = AvatarUri.FromEmail( "someone@example.com" );
+	var uri = AvatarUri.FromEmail( "someone@example.com", 
+		new AvatarOptions { ... 
 
 DESCRIPTION
 	Libravatar-sharp is a very simple library for producing 
 	libravatar URIs from user information, in a C# application.
+
+OPTIONS
+	AvatarOptions supports the following options:
+	  * PreferHTTPS: Produce https:// URIs where possible,
+		which is useful if including URIs in a page served via HTTPS.
+		The default value is false.
+	  * UseSHA256: Use the stronger SHA256 algorithm to hash the
+		email address. This is harder to reverse, but breaks
+		the fallback to Gravatar for missing images.
+		The default value is false.
 
 BUGS
 	The following would be nice, but are not yet supported:
 
 	  * OpenID lookups
 	  * Federation via DNS SRV requests
-	  * HTTPS
-	  * SHA256
 	  * Custom sizes
 	  * Default URLs 
 
