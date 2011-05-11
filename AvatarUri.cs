@@ -90,6 +90,14 @@ namespace libravatarsharp
 			return new string(h.ComputeHash(bytes)
 			    .SelectMany(a => a.ToString("x2")).ToArray());
 		}
+		
+		static Uri CanonicalizeOpenID( Uri openid )
+		{
+			var ub = new UriBuilder(openid);
+			ub.Scheme = ub.Scheme.ToLowerInvariant();
+			ub.Host = ub.Host.ToLowerInvariant();
+			return ub.Uri;
+		}
 	}
 	
 	public class AvatarOptions
