@@ -53,6 +53,8 @@ namespace libravatarsharp
 			var args = new Dictionary<string,string>();
 			if (options.DefaultImage != null)
 				args["d"] = options.DefaultImage;
+			if (options.Size != null)
+				args["s"] = options.Size.ToString();
 			
 			var url = baseUrl + hash(email.ToLowerInvariant()) + UriQueryFromArgs(args);
 			return new Uri(url);
@@ -113,6 +115,12 @@ namespace libravatarsharp
 		/// any of the "special" values in AvatarDefaultImages
 		/// </summary>
 		public string DefaultImage = AvatarDefaultImages.Default;
+		
+		/// <summary>
+		/// Size of the image requested. Valid values are between 1 and 512 pixels. The default
+		/// size is 80 pixels.
+		/// </summary>
+		public int? Size;
 	}
 	
 	public static class AvatarDefaultImages

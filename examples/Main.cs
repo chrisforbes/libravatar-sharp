@@ -34,6 +34,11 @@ namespace examples
 			var uri5 = AvatarUri.FromEmail( "bogus@ijw.co.nz",
 			    new AvatarOptions { DefaultImage = AvatarDefaultImages.MonsterID } );
 			Console.WriteLine( uri5 );
+			
+			// 6. If you need a size other than the default, you can specify that:
+			var uri6 = AvatarUri.FromEmail( "chrisf@ijw.co.nz",
+				new AvatarOptions { Size = 32 } );
+			Console.WriteLine( uri6 );
 		}
 	}
 }

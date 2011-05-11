@@ -21,13 +21,15 @@ OPTIONS
 		of the values in AvatarDefaultImages. Not all servers support
 		all of the magic values, however.
 		The default value is null.
+	  * Size: The size of the image you want, in pixels. Valid values are
+		between 1 and 512 pixels inclusive.
+		The default value is 80 pixels.
 
 BUGS
 	The following would be nice, but are not yet supported:
 
 	  * OpenID lookups
 	  * Federation via DNS SRV requests
-	  * Custom sizes
 
 AUTHOR
 	Chris Forbes <chrisf@ijw.co.nz>
