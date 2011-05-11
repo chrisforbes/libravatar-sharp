@@ -36,11 +36,22 @@ namespace libravatarsharp
 		
 		static string MD5Hash( string s )
 		{
+			using( var h = MD5.Create() )
+				return Hash(s,h);
+		}
+		
+		static string SHA256Hash( string s )
+		{
+			using( var h = SHA256.Create() )
+				return Hash(s,h);
+		}
+		
+		static string Hash( string s, HashAlgorithm h )
+		{
 			var bytes = Encoding.UTF8.GetBytes(s);
 			
-			using( var csp = MD5.Create())
-				return new string(csp.ComputeHash(bytes)
-				    .SelectMany(a => a.ToString("x2")).ToArray());
+			return new string(h.ComputeHash(bytes)
+			    .SelectMany(a => a.ToString("x2")).ToArray());
 		}
 	}
 }
