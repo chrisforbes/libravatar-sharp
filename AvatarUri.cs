@@ -47,7 +47,7 @@ namespace libravatarsharp
 		/// </returns>
 		public static Uri FromEmail( string email, AvatarOptions options )
 		{
-			var baseUrl = options.PreferHttps ? options.SecureBaseUrl : options.BaseUrl;
+			var baseUri = options.PreferHttps ? options.SecureBaseUri : options.BaseUri;
 			var hash = options.UseSHA256 ? (Func<string,string>)SHA256Hash : MD5Hash;
 			
 			var args = new Dictionary<string,string>();
@@ -56,8 +56,8 @@ namespace libravatarsharp
 			if (options.Size != null)
 				args["s"] = options.Size.ToString();
 			
-			var url = baseUrl + hash(email.ToLowerInvariant()) + UriQueryFromArgs(args);
-			return new Uri(url);
+			var uri = baseUri + hash(email.ToLowerInvariant()) + UriQueryFromArgs(args);
+			return new Uri(uri);
 		}
 		
 		static string UriQueryFromArgs( Dictionary<string,string> args )
@@ -124,13 +124,13 @@ namespace libravatarsharp
 		/// libravatar HTTP server. If you *really* wanted to use a non-free server, you
 		/// could set this to "http://gravatar.com/avatar/", but why would you do such a thing?
 		/// </summary>
-		public string BaseUrl = "http://cdn.libravatar.org/avatar/";
+		public string BaseUri = "http://cdn.libravatar.org/avatar/";
 		
 		/// <summary>
 		/// Specifies a custom base URI for HTTPS use. The default is to use the official
 		/// libravatar HTTPS server.
 		/// </summary>
-		public string SecureBaseUrl = "https://seccdn.libravatar.org/avatar/";
+		public string SecureBaseUri = "https://seccdn.libravatar.org/avatar/";
 	}
 	
 	public static class AvatarDefaultImages

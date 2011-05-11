@@ -24,12 +24,12 @@ OPTIONS
 	  * Size: The size of the image you want, in pixels. Valid values are
 		between 1 and 512 pixels inclusive.
 		The default value is 80 pixels.
-	  * BaseUrl: Set the base URL for the server you want to use.
+	  * BaseUri: Set the base URI for the server you want to use.
 		By default, this is:
 			http://cdn.libravatar.org/avatar/
 		If you don't like freedom, you could point this directly at
 		Gravatar or something.
-	  * SecureBaseUrl: Set the base URL for the server you want to use
+	  * SecureBaseUri: Set the base URI for the server you want to use
 		for HTTPS links. By default, this is: 
 			https://seccdn.libravatar.org/avatar/
 
