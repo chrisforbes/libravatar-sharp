@@ -48,8 +48,10 @@ namespace libravatarsharp
 		{
 			var baseUrl = options.PreferHttps ? SecureBaseUrl : BaseUrl;
 			var hash = options.UseSHA256 ? (Func<string,string>)SHA256Hash : MD5Hash;
-			
-			return new Uri(baseUrl + hash(email.ToLowerInvariant()));
+
+			var defaultImage = options.DefaultImage != null ? ("?d=" + options.DefaultImage) : "";
+
+			return new Uri(baseUrl + hash(email.ToLowerInvariant()) + defaultImage);
 		}
 	
 		static readonly string BaseUrl = "http://cdn.libravatar.org/avatar/";
@@ -83,13 +85,51 @@ namespace libravatarsharp
 		/// when using libravatar-sharp from within a page served via HTTPS.
 		/// </summary>
 		public bool PreferHttps;
-		
+
 		/// <summary>
 		/// Use the SHA256 hash algorithm, rather than MD5. SHA256 is significantly stronger,
 		/// but is not supported by Gravatar, so libravatar's fallback to Gravatar for missing
 		/// images will not work.
 		/// </summary>
 		public bool UseSHA256;
+
+		/// <summary>
+		/// URI for a default image, if no image is found for the user. This also accepts
+		/// any of the "special" values in AvatarDefaultImages
+		/// </summary>
+		public string DefaultImage = AvatarDefaultImages.Default;
+	}
+	
+	public static class AvatarDefaultImages
+	{
+		/// <summary>
+		/// The default image provided by the libravatar server
+		/// </summary>
+		public static readonly string Default = null;
+		/// <summary>
+		/// No image at all. The server will return an HTTP 404 Not Found response instead
+		/// </summary>
+		public static readonly string Error = "404";
+		/// <summary>
+		/// A generic "person" image
+		/// </summary>
+		public static readonly string Person = "mm";
+		/// <summary>
+		/// A colored geometric pattern generated from the hash
+		/// </summary>
+		public static readonly string Identicon = "identicon";
+		/// <summary>
+		/// A monster image generated from the hash
+		/// </summary>
+		public static readonly string MonsterID = "monsterid";
+		/// <summary>
+		/// A face image generated from the hash
+		/// </summary>
+		public static readonly string Wavatar = "wavatar";
+		/// <summary>
+		/// A retro-styled image generated from the hash
+		/// </summary>
+		public static readonly string Retro = "retro";
 	}
 }
 

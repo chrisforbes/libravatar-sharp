@@ -17,6 +17,10 @@ OPTIONS
 		email address. This is harder to reverse, but breaks
 		the fallback to Gravatar for missing images.
 		The default value is false.
+	  * DefaultImage: A URI to an image to use if none is found, or one
+		of the values in AvatarDefaultImages. Not all servers support
+		all of the magic values, however.
+		The default value is null.
 
 BUGS
 	The following would be nice, but are not yet supported:
@@ -24,7 +28,6 @@ BUGS
 	  * OpenID lookups
 	  * Federation via DNS SRV requests
 	  * Custom sizes
-	  * Default URLs 
 
 AUTHOR
 	Chris Forbes <chrisf@ijw.co.nz>
