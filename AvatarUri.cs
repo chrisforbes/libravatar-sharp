@@ -1,3 +1,14 @@
+#region Copyright & License Information
+/*
+ * Copyright 2011 The libravatar-sharp Developers (see AUTHORS)
+ * This file is part of libravatar-sharp, which is free software. It is made 
+ * available to you under the terms of the GNU General Public License v3
+ * as published by the Free Software Foundation. For more information,
+ * see COPYING.
+ */
+#endregion
+
+
 using System;
 using System.Security.Cryptography;
 using System.Linq;
