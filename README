@@ -1,0 +1,20 @@
+SYNOPSIS
+	using libravatarsharp;
+	var uri = AvatarUri.FromEmail( "someone@example.com" );
+
+DESCRIPTION
+	Libravatar-sharp is a very simple library for producing 
+	libravatar URIs from user information, in a C# application.
+
+BUGS
+	The following would be nice, but are not yet supported:
+
+	  * OpenID lookups
+	  * Federation via DNS SRV requests
+	  * HTTPS
+	  * SHA256
+	  * Custom sizes
+	  * Default URLs 
+
+AUTHOR
+	Chris Forbes <chrisf@ijw.co.nz>

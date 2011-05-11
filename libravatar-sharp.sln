@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libravatar-sharp", "libravatar-sharp.csproj", "{79D295B7-AB7D-41C5-B3A8-E78872FEE044}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "examples", "examples\examples.csproj", "{56B9CD75-F538-481F-8030-FEB4799CCB68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56B9CD75-F538-481F-8030-FEB4799CCB68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56B9CD75-F538-481F-8030-FEB4799CCB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56B9CD75-F538-481F-8030-FEB4799CCB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56B9CD75-F538-481F-8030-FEB4799CCB68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D295B7-AB7D-41C5-B3A8-E78872FEE044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D295B7-AB7D-41C5-B3A8-E78872FEE044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D295B7-AB7D-41C5-B3A8-E78872FEE044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D295B7-AB7D-41C5-B3A8-E78872FEE044}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = examples\examples.csproj
+	EndGlobalSection
+EndGlobal
