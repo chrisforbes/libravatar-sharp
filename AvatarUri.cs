@@ -48,16 +48,20 @@ namespace libravatarsharp
 		public static Uri FromEmail( string email, AvatarOptions options )
 		{
 			var identity = CanonicalizeEmail(email);
-			var baseUri = options.PreferHttps ? options.SecureBaseUri : options.BaseUri;
-			var hash = options.UseSHA256 ? (Func<string,string>)SHA256Hash : MD5Hash;
-			
+			var hashFunction = options.UseSHA256 ? (Func<string,string>)SHA256Hash : MD5Hash;
+			return FromHashedIdentity( hashFunction(identity), options );
+		}
+		
+		static Uri FromHashedIdentity( string hash, AvatarOptions options )
+		{
 			var args = new Dictionary<string,string>();
 			if (options.DefaultImage != null)
 				args["d"] = options.DefaultImage;
 			if (options.Size != null)
 				args["s"] = options.Size.ToString();
 			
-			var uri = baseUri + hash(identity) + UriQueryFromArgs(args);
+			var baseUri = options.PreferHttps ? options.SecureBaseUri : options.BaseUri;
+			var uri = baseUri + hash + UriQueryFromArgs(args);
 			return new Uri(uri);
 		}
 		
